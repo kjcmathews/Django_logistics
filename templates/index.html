@@ -1,0 +1,87 @@
+{% extends 'commons/base_template.html' %}
+{% block 'body' %}
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row m-t-25">
+                            {% for item in time %}
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c{{ forloop.counter }}">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                            </div>
+                                            <div class="text">
+                                                <h2>{{item.place}}</h2>
+                                                <span>{{ item.time }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="au-card chart-percent-card">
+                                    <div class="au-card-inner">
+                                        <h3 class="title-2 tm-b-5">Live Assets Status %</h3>
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-6">
+                                                <div class="chart-note-wrap">
+                                                    <div class="chart-note mr-0 d-block">
+                                                        <span class="dot dot--blue"></span>
+                                                        <span>In Service</span>
+                                                    </div>
+                                                    <div class="chart-note mr-0 d-block">
+                                                        <span class="dot dot--red"></span>
+                                                        <span>Under Maintenance</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" id="percent-chart-val" value="{{avg}}"/>
+                                            <div class="col-xl-6">
+                                                <div class="percent-chart">
+                                                    <canvas id="percent-chart"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h2 class="title-1 m-b-25">Assets Summary</h2>
+                                <div class="table-responsive table--no-card m-b-40">
+                                    <table class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>Vehical type</th>
+                                                <th>Model name</th>
+                                                <th>Model number</th>
+                                                <th class="text-right">Condition</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for item in result %}
+                                            <tr>
+                                                <td>{{item.vehical_type}}</td>
+                                                <td>{{item.model_name}}</td>
+                                                <td>{{item.model_number}}</td>
+                                                <td class="text-right">{{item.condition}}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+{% endblock %}
